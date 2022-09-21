@@ -1,6 +1,0 @@
-﻿namespace Task
-{
-    class Receiver
-    {
-    }
-}
