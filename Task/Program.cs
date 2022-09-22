@@ -16,7 +16,7 @@ namespace Program
             var downloader = new YoutobeClient(url);
             var sender = new CommandSender();
 
-            sender.SetCommand(new GetInfoVideoCommand(downloader));
+            sender.SetCommand(new GetTitleVideoCommand(downloader));
             await sender.StartCommand();
 
             sender.SetCommand(new DownloadCommand(downloader));

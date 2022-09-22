@@ -1,7 +1,7 @@
 ﻿namespace Program.Commands
 {
     /// <summary>
-    /// Общий интерфейс команд
+    /// Общий абстракный класс команд
     /// </summary>
     abstract class Command
     {

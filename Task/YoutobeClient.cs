@@ -16,7 +16,7 @@ namespace Program
             _videoUrl = videoUrl;
         }
 
-        public async Task GetInfoVideo()
+        public async Task GetTitleVideo()
         {
             _video = await _videoClient.GetAsync(_videoUrl);
             Console.WriteLine(Constants.LINE + "Название: " + _video.Title + Constants.LINE);
@@ -26,7 +26,6 @@ namespace Program
         {
             string downloadVideoTitle = _video.Title.ReplacePunctuations();
 
-            Console.WriteLine("Видео скачивается");
             await _videoClient.DownloadAsync(_videoUrl, $"{downloadVideoTitle}.mp4", builder => builder.SetPreset(ConversionPreset.UltraFast));
             Console.WriteLine("Видео успешно загружено");
         }

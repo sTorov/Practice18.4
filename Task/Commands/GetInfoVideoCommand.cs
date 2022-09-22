@@ -1,14 +1,14 @@
 ﻿namespace Program.Commands
 {
-    class GetInfoVideoCommand : Command
+    class GetTitleVideoCommand : Command
     {
-        public GetInfoVideoCommand(YoutobeClient receiver) : base(receiver)
+        public GetTitleVideoCommand(YoutobeClient receiver) : base(receiver)
         {
         }
 
         public override async Task Run()
         {
-            await _client.GetInfoVideo();
+            await _client.GetTitleVideo();
         }
     }
 }
