@@ -5,13 +5,17 @@
     /// </summary>
     abstract class Command
     {
-        protected YoutobeClient _client;
+        protected VideoUrlHandler _client;
 
-        public Command(YoutobeClient client)
+        public Command(VideoUrlHandler client)
         {
             _client = client;
         }
 
+        /// <summary>
+        /// Запуск
+        /// </summary>
+        /// <returns></returns>
         public abstract Task Run();
     }
 }

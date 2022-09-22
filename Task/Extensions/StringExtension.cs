@@ -2,11 +2,21 @@
 
 namespace Program.Extensions
 {
+    /// <summary>
+    /// String - расширения
+    /// </summary>
     public static class StringExtension
     {
-        public static string ReplacePunctuations(this string input)
+        /// <summary>
+        /// Замена всех пробельных и недопустимых в имени файла символов на нижнее подчёркивание<br/>
+        /// Сокращение повторяющихся нижних подчёркиваний до одного<br/>
+        /// Удаление нижних подчёркиваний в начале и конце строки
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string GetCorrectFileName(this string input)
         {
-            return Regex.Replace(input, @"\p{P}", "_");
+            return Regex.Replace(input, @"\W+", "_").Trim('_');
         }
     }
 }
