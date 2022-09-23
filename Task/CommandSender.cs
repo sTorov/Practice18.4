@@ -10,7 +10,7 @@ namespace Program
         private Command _command;
 
         /// <summary>
-        /// Задать команду
+        /// Назначить команду
         /// </summary>
         /// <param name="command"></param>
         public void SetCommand(Command command)

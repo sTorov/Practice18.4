@@ -12,28 +12,6 @@ namespace Program
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            var videoUrlHandler = GetVideoUrlHandler();
-
-            if (videoUrlHandler == null)
-                return;
-
-            var sender = new CommandSender();
-
-            sender.SetCommand(new GetTitleVideoCommand(videoUrlHandler));
-            await sender.StartCommand();
-
-            sender.SetCommand(new DownloadCommand(videoUrlHandler));
-            await sender.StartCommand();
-
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Получение объекта VideoUrlHandler
-        /// </summary>
-        /// <returns></returns>
-        static VideoUrlHandler GetVideoUrlHandler()
-        {
             while (true)
             {
                 try
@@ -41,20 +19,39 @@ namespace Program
                     Console.WriteLine("Укажите ссылку на видео:");
                     string url = Console.ReadLine();
 
-                    return new VideoUrlHandler(url);
+                    var videoUrlHandler = new VideoUrlHandler(url);
+
+                    var sender = new CommandSender();
+
+                    sender.SetCommand(new GetTitleVideoCommand(videoUrlHandler));
+                    await sender.StartCommand();
+
+                    sender.SetCommand(new DownloadCommand(videoUrlHandler));
+                    await sender.StartCommand();
+
+                    Console.ReadKey();
+                    return;
                 }
                 catch (ArgumentException)
                 {
-                    errorLogger.Print("Указан неверный url-адрес, попробуйте снова");
+                    errorLogger.Print(Constants.ARGUMENT_EXCEPTION_MSG);
                     Console.ReadKey();
                     Console.Clear();
                     continue;
                 }
-                catch (HttpRequestException)
+                catch(HttpRequestException)
                 {
-                    errorLogger.Print("Для работы программы необходимо интернет-соединение");
+                    errorLogger.Print(Constants.HTTP_REQUEST_EXCEPTION_MSG);
                     Console.ReadKey();
-                    return null;
+                    Console.Clear();
+                    continue;
+                }
+                catch (Exception e)
+                {
+                    errorLogger.Print(Constants.UNKNOWN_EXCEPTION_MSG + e.Message);
+                    Console.ReadKey();
+                    Console.Clear();
+                    return;
                 }
             }
         }
