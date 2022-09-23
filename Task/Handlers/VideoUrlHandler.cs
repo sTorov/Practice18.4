@@ -1,11 +1,12 @@
-﻿using Program.Extensions;
+﻿using Program;
+using Program.Extensions;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Videos;
 
-namespace Program
+namespace Program.Handlers
 {
     /// <summary>
-    /// Объект для обработки полученного URL-адреса видео
+    /// Обработчик URL-адреса видео
     /// </summary>
     class VideoUrlHandler
     {
@@ -25,7 +26,7 @@ namespace Program
         /// </summary>
         /// <returns></returns>
         public void GetInfoVideo() => Console.WriteLine(Constants.LINE + "Название:\n" + _video.Title +
-                                                        Constants.LINE + "Описание:\n" + _video.Description + 
+                                                        Constants.LINE + "Описание:\n" + _video.Description +
                                                         Constants.LINE);
 
         /// <summary>

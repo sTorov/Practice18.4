@@ -1,4 +1,5 @@
 ﻿using Program.Commands;
+using Program.Handlers;
 using Program.Loggers;
 using System.Text;
 
@@ -21,15 +22,22 @@ namespace Program
 
                     var videoUrlHandler = new VideoUrlHandler(url);
 
-                    var sender = new CommandSender();
+                    var sender = CommandSender.GetCommandSenderObj();
 
                     sender.SetCommand(new GetInfoVideoCommand(videoUrlHandler));
                     await sender.StartCommand();
 
-                    sender.SetCommand(new DownloadCommand(videoUrlHandler));
-                    await sender.StartCommand();
+                    if(PressKeyHandler.CheckTap(Constants.LINE + "Скачать видео? [Y/N]" + Constants.LINE))
+                    {
+                        sender.SetCommand(new DownloadCommand(videoUrlHandler));
+                        await sender.StartCommand();
+                    }
+                    if(PressKeyHandler.CheckTap(Constants.LINE + "Продолжить? [Y/N]" + Constants.LINE))
+                    {
+                        Console.Clear();
+                        continue;
+                    }
 
-                    Console.ReadKey();
                     return;
                 }
                 catch (ArgumentException)
@@ -54,6 +62,6 @@ namespace Program
                     return;
                 }
             }
-        }
+        }        
     }
 }

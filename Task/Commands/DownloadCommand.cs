@@ -1,4 +1,6 @@
-﻿namespace Program.Commands
+﻿using Program.Handlers;
+
+namespace Program.Commands
 {
     /// <summary>
     /// Команда для скачивания видео с YouTube
