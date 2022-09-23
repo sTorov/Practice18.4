@@ -23,7 +23,7 @@ namespace Program
 
                     var sender = new CommandSender();
 
-                    sender.SetCommand(new GetTitleVideoCommand(videoUrlHandler));
+                    sender.SetCommand(new GetInfoVideoCommand(videoUrlHandler));
                     await sender.StartCommand();
 
                     sender.SetCommand(new DownloadCommand(videoUrlHandler));

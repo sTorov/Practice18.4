@@ -21,10 +21,12 @@ namespace Program
         }
 
         /// <summary>
-        /// Вывод названия видео в консоль
+        /// Вывод названия и описания видео в консоль
         /// </summary>
         /// <returns></returns>
-        public void GetTitleVideo() => Console.WriteLine(Constants.LINE + "Название: " + _video.Title + Constants.LINE);
+        public void GetInfoVideo() => Console.WriteLine(Constants.LINE + "Название:\n" + _video.Title +
+                                                        Constants.LINE + "Описание:\n" + _video.Description + 
+                                                        Constants.LINE);
 
         /// <summary>
         /// Скачивание видео
