@@ -11,12 +11,13 @@ namespace Program
 
         static async Task Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;                
 
             while (true)
             {
                 try
                 {
+
                     Console.WriteLine("Укажите ссылку на видео:");
                     string url = Console.ReadLine();
 
@@ -42,26 +43,31 @@ namespace Program
                 }
                 catch (ArgumentException)
                 {
-                    errorLogger.Print(Constants.ARGUMENT_EXCEPTION_MSG);
-                    Console.ReadKey();
-                    Console.Clear();
+                    PrintError(Constants.ARGUMENT_EXCEPTION_MSG);
                     continue;
                 }
                 catch(HttpRequestException)
                 {
-                    errorLogger.Print(Constants.HTTP_REQUEST_EXCEPTION_MSG);
-                    Console.ReadKey();
-                    Console.Clear();
+                    PrintError(Constants.HTTP_REQUEST_EXCEPTION_MSG);
                     continue;
                 }
                 catch (Exception e)
                 {
-                    errorLogger.Print(Constants.UNKNOWN_EXCEPTION_MSG + e.Message);
-                    Console.ReadKey();
-                    Console.Clear();
-                    return;
+                    PrintError(Constants.UNKNOWN_EXCEPTION_MSG + e.Message);
+                    continue;
                 }
             }
-        }        
+        }
+        
+        /// <summary>
+        /// Вывод сообщения об ошибке и очистка консоли
+        /// </summary>
+        /// <param name="value"></param>
+        static void PrintError(string value)
+        {
+            errorLogger.Print(value);
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 }

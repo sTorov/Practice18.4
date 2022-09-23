@@ -26,8 +26,8 @@ namespace Program.Handlers
         /// Вывод названия и описания видео в консоль
         /// </summary>
         /// <returns></returns>
-        public void GetInfoVideo() => Console.WriteLine(Constants.LINE + "Название:\n" + _video.Title +
-                                                        Constants.LINE + "Описание:\n" + _video.Description +
+        public void GetInfoVideo() => Console.WriteLine(Constants.LINE + "Название:\n\n" + _video.Title +
+                                                        Constants.LINE + "Описание:\n\n" + _video.Description +
                                                         Constants.LINE);
 
         /// <summary>

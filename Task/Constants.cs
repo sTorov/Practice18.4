@@ -8,7 +8,7 @@
         /// <summary>
         /// Разделительная линия
         /// </summary>
-        public static readonly string LINE = "\n--------------------\n";
+        public static readonly string LINE = "\n--------------------------------------------------\n";
 
         /// <summary>
         /// Сообщение при возниковении ArgumentException
