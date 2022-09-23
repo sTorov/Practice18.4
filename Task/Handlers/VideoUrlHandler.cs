@@ -1,5 +1,6 @@
 ﻿using Program;
 using Program.Extensions;
+using System.Diagnostics;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Videos;
 
@@ -39,6 +40,25 @@ namespace Program.Handlers
 
             await _videoClient.DownloadAsync(_videoUrl, downloadVideoTitle, builder => builder.SetPreset(ConversionPreset.UltraFast));
             Console.WriteLine("Видео успешно загружено");
+
+            OpenContainFileFolder(new FileInfo(downloadVideoTitle).FullName);
+        }
+
+        /// <summary>
+        /// Открытие папки, содержащей скаченый файл <br/>
+        /// Выделить скаченый файл
+        /// </summary>
+        /// <param name="path"></param>
+        private void OpenContainFileFolder(string path)
+        {
+            if(PressKeyHandler.CheckTap(Constants.LINE + "Открыть папку, содержащую скаченый файл? [Y/N]" + Constants.LINE))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "explorer",
+                    Arguments = $"/n, /select, {path}",
+                });
+            }
         }
     }
 }
